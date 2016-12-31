@@ -22,7 +22,8 @@ end
     @group.user = current_user
 
     if @group.save
-    redirect_to groups_path
+      current_user.join!(@group)
+      redirect_to groups_path
   else
     render :new
   end
@@ -66,7 +67,7 @@ def quit
  end
  redirect_to group_path(@group)
  end
- 
+
 private
 
 def find_group_and_check_permission
